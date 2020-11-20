@@ -31,8 +31,10 @@ public class KiddaLaController {
 	}
 
 	public static Customer orderInputDisplay(String custId) throws Exception {
+		int id = Integer.parseInt(custId);
+
 		Customer customer = new Customer(
-								9999, "ダミー顧客", "ダミーコキャク", "99999999999", "東京都千代田区神田小川町9-9-9");
+								id, "ダミー顧客", "ダミーコキャク", "99999999999", "東京都千代田区神田小川町9-9-9");
 		return customer;
 	}
 
