@@ -9,10 +9,17 @@
 
 package action;
 
+import java.util.ArrayList;
+
+import dao.ItemMenuDisplayDBAccess;
+import model.Item;
 
 public class ItemMenuDisplayAction {
 
-	public String[][] execute()  throws Exception {
-		return null;
+	public ArrayList<Item> execute()  throws Exception {
+		 ItemMenuDisplayDBAccess  imdb = new  ItemMenuDisplayDBAccess();
+
+		 imdb.searchAllItem();
+		return imdb.searchAllItem();
 	}
 }

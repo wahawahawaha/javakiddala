@@ -9,9 +9,48 @@
 
 package model;
 
+import java.io.Serializable;
 
-public class Item {
-
+public class Item  implements Serializable{
+	private String itemId;
+	private String itemName;
+	private String size;
+	private int price;
+	public Item() {}
 	public Item(String itemId, String itemName, String size, int price) {
+
+		this.itemId = itemId;
+		this.itemName= itemName;
+		this.size= size;
+		this.price= price;
+
 	}
+	public void setItemId(String itemId){
+		this.itemId = itemId;
+	}
+	public String getItemId() {
+		return itemId;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getPrice() {
+		return price;
+	}
+
+
+
+
 }

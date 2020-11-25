@@ -12,10 +12,12 @@ import java.util.ArrayList;
 
 import action.CustomerSearchAction;
 import action.CustomerSearchDisplayAction;
+import action.ItemMenuDisplayAction;
 import action.MainMenuDisplayAction;
 import action.OrderInputDisplayAction;
 import action.PrintOutAction;
 import model.Customer;
+import model.OrderControlUtility2;
 import model.OrderDetail;
 import view.DeliveryConfirmFrame;
 
@@ -39,7 +41,10 @@ public class KiddaLaController {
 	}
 
 	public static String[][] itemMenuDisplay() throws Exception {
-		return null;
+		ItemMenuDisplayAction imda = new ItemMenuDisplayAction();
+		imda.execute();
+		String [][]tableData = OrderControlUtility2.itemToArray(imda.execute());
+		return tableData;
 	}
 
 	public static ArrayList<OrderDetail> deliveryConfirm(String custId)
