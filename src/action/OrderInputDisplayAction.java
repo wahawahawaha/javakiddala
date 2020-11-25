@@ -9,11 +9,18 @@
 
 package action;
 
+import dao.OrderInputDisplayDBAccess;
 import model.Customer;
 
-public class OrderInputDisplayAction {
+public class OrderInputDisplayAction { //oida
 
 	public Customer execute(String custId) throws Exception {
-		return null;
+		int id = Integer.parseInt(custId);
+
+		OrderInputDisplayDBAccess  oidb = new OrderInputDisplayDBAccess() ;
+		Customer customer =oidb.searchCustomerById(id);
+
+
+		return customer;
 	}
 }

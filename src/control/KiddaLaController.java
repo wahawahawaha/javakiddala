@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import action.CustomerSearchAction;
 import action.CustomerSearchDisplayAction;
 import action.MainMenuDisplayAction;
+import action.OrderInputDisplayAction;
 import action.PrintOutAction;
 import model.Customer;
 import model.OrderDetail;
@@ -31,10 +32,9 @@ public class KiddaLaController {
 	}
 
 	public static Customer orderInputDisplay(String custId) throws Exception {
-		int id = Integer.parseInt(custId);
 
-		Customer customer = new Customer(
-								id, "ダミー顧客", "ダミーコキャク", "99999999999", "東京都千代田区神田小川町9-9-9");
+		OrderInputDisplayAction oida =new OrderInputDisplayAction();
+		Customer customer=oida.execute(custId);
 		return customer;
 	}
 
