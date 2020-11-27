@@ -2,7 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-public class Con_and_closeDBAccess {
+public class ControlDBAccess {
 
 		protected Connection createConnection() throws Exception{
 			Connection con=null;

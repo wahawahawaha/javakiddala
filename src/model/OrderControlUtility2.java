@@ -10,12 +10,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class OrderControlUtility2 {
 
 	public static String[][] itemToArray(ArrayList<Item> list) {
 		int listSize = list.size();
-		String[][] tableData = new String[listSize][5];
+		String[][] tableData = new String[listSize][6];
+
 		for(int i = 0; i < listSize; i++) {
 
 			Item item = list.get(i);
@@ -23,9 +25,8 @@ public class OrderControlUtility2 {
 			tableData[i][1] = item.getItemName();
 			tableData[i][2] = item.getSize();
 			tableData[i][3] = Integer.toString(0);
-
 			tableData[i][4] = Integer.toString(item.getPrice());
-
+			tableData[i][5] = Integer.toString(0);
 		}
 
 		return tableData;
@@ -33,10 +34,44 @@ public class OrderControlUtility2 {
 	}
 
 	public static String[][] orderToArray(ArrayList<OrderDetail> orderDetailList) {
-		return null;
+		int listSize = orderDetailList.size();
+		String[][] tableData = new String[listSize][7];
+
+		for(int i = 0; i < listSize; i++) {
+
+			OrderDetail orderDetail = orderDetailList.get(i);
+
+			tableData[i][0] = Long.toString(orderDetail.getNo());
+
+			Item item = orderDetail.getItem();
+			tableData[i][1] = item.getItemId();
+			tableData[i][2] = item.getItemName();
+			tableData[i][3] = item.getSize();
+
+			Tax tax = orderDetail.getTax();
+			double rate = tax.getRate();
+
+			int quantity = orderDetail.getQuantity();
+			int price = item.getPrice();
+			price = (int)(price * (1 + rate));
+
+			tableData[i][4] = Integer.toString(quantity);
+			tableData[i][5] = Integer.toString(price);
+
+			int subTotal = quantity * price;
+			tableData[i][6] = Integer.toString(subTotal);
+		}
+
+		return tableData;
 	}
 
 	public static String getDate() {
-		return null;
+		Calendar cal = Calendar.getInstance();
+
+	    int year = cal.get(Calendar.YEAR);
+	    int month = cal.get(Calendar.MONTH) + 1;
+	    int day = cal.get(Calendar.DATE);
+
+	    return year + "-" + month + "-" + day;
 	}
 }

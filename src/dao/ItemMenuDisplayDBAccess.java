@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import model.Item;
 
-public class ItemMenuDisplayDBAccess extends Con_and_closeDBAccess{
+public class ItemMenuDisplayDBAccess extends ControlDBAccess{
 
 	public ArrayList<Item> searchAllItem() throws Exception {
 		Connection con=super.createConnection();

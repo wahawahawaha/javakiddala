@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 import model.Customer;
 
-public class OrderInputDisplayDBAccess extends Con_and_closeDBAccess{
+public class OrderInputDisplayDBAccess extends ControlDBAccess{
 
 	public Customer searchCustomerById(int custId) throws Exception {
 		Connection con=createConnection();
