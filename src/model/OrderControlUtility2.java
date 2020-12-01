@@ -15,6 +15,7 @@ import java.util.Calendar;
 public class OrderControlUtility2 {
 
 	public static String[][] itemToArray(ArrayList<Item> list) {
+
 		int listSize = list.size();
 		String[][] tableData = new String[listSize][6];
 
@@ -30,10 +31,10 @@ public class OrderControlUtility2 {
 		}
 
 		return tableData;
-
 	}
 
 	public static String[][] orderToArray(ArrayList<OrderDetail> orderDetailList) {
+
 		int listSize = orderDetailList.size();
 		String[][] tableData = new String[listSize][7];
 
@@ -66,6 +67,7 @@ public class OrderControlUtility2 {
 	}
 
 	public static String getDate() {
+
 		Calendar cal = Calendar.getInstance();
 
 	    int year = cal.get(Calendar.YEAR);

@@ -8,14 +8,22 @@
  */
 
 package action;
-
 import java.util.ArrayList;
 
+import dao.DeliveryConfirmDBAccess;
 import model.OrderDetail;
+
 
 public class DeliveryConfirmAction {
 
-	public ArrayList<OrderDetail> execute(String custId) throws Exception {
-		return null;
+	public ArrayList<OrderDetail> execute(String custId) throws Exception{
+
+		int intCustId = Integer.parseInt(custId);
+		DeliveryConfirmDBAccess dc = new DeliveryConfirmDBAccess();
+
+		ArrayList<OrderDetail> list = new ArrayList<OrderDetail>();
+		list = dc.searchDeliveryByCustId(intCustId);
+
+		return list;
 	}
 }

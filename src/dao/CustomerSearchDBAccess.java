@@ -169,49 +169,6 @@ public class CustomerSearchDBAccess {
 					closeConnection(con);
 					return list;
 }
-				public Customer searchbyId(int custId)throws Exception{
-					Connection con=createConnection();
-					PreparedStatement pstmt=null;
-					ResultSet rs=null;
-					try {
-						if(con!=null) {
-							String sql="SELECT CUSTID,CUSTNAME,KANA,TEL,ADDRESS"
-									+" FROM CUSTOMER"
-									+" WHERE KANA ="+custId+";";
-							pstmt=con.prepareStatement(sql);
-							rs=pstmt.executeQuery();
-							while (rs.next()==true) {
-								int custid=rs.getInt("CUSTID");
-								String custName=rs.getString("CUSTNAME");
-							   String kana=rs.getString("KANA");
-								String tel=rs.getString("TEL");
-								String address=rs.getString("ADDRESS");
-								Customer customer = new Customer(custid, custName, kana, tel, address);
-								return customer;
-							}
-			}
-					}catch(SQLException e) {
-						throw new Exception("DB接続処理に失敗しました。");
-					}finally {
-						try {
-							if(rs!=null) {
-								rs.close();
-							}
-						}catch(SQLException e) {
-							throw new Exception("DB接続処理に失敗しました。");
-						}
-						try {
-							if(pstmt!=null) {
-								pstmt.close();
-							}
-						}catch(SQLException e) {
-							throw new Exception("DB接続処理に失敗しました。");
-						}
-					}
-				closeConnection(con);
-				return null;
-
-					}
 }
 
 

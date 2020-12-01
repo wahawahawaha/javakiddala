@@ -7,6 +7,15 @@
  * 修正日　：
  */
 
+/**
+ * クラス名：	OrderInputDisplayDBAccess
+ * 概要　　：	注文情報入力画面表示DAO
+ * 作成者名：
+ * 作成日　：
+ * 修正者名：
+ * 修正日　：
+ */
+
 package dao;
 
 import java.sql.Connection;
@@ -16,50 +25,49 @@ import java.sql.SQLException;
 
 import model.Customer;
 
-public class OrderInputDisplayDBAccess extends ControlDBAccess{
+public class OrderInputDisplayDBAccess extends ControlDBAccess {
 
 	public Customer searchCustomerById(int custId) throws Exception {
-		Connection con=createConnection();
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
+
+		Connection con = createConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		Customer customer = null;
 
 		try {
-			if(con!=null) {
-				pstmt = con.prepareStatement("SELECT CUSTNAME, KANA, TEL, ADDRESS FROM CUSTOMER WHERE CUSTID = ?");
-				pstmt.setInt(1, custId);
 
-				rs=pstmt.executeQuery();
-				while (rs.next()==true) {
-					String custName=rs.getString("CUSTNAME");
-					String kana=rs.getString("KANA");
-					String address=rs.getString("ADDRESS");
-					String tel =rs.getString("TEL");
-				 customer = new Customer(custId, custName, kana, tel, address);
-					}
-				}
-		}catch(SQLException e) {
-			throw new Exception("DB接続処理に失敗しました。②");
-		}finally {
-			try {
-				if(rs!=null) {
+			pstmt = con.prepareStatement("SELECT CUSTNAME, KANA, TEL, ADDRESS FROM CUSTOMER WHERE CUSTID = ?");
+			pstmt.setInt(1, custId);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+
+				String custName = rs.getString("CUSTNAME");
+				String kana = rs.getString("KANA");
+				String tel = rs.getString("TEL");
+				String address = rs.getString("ADDRESS");
+				customer = new Customer(custId, custName, kana, tel, address);
+			}
+		} catch (SQLException e) {
+			throw new Exception("顧客情報検索処理に失敗しました！");
+		} finally {
+			if(rs != null) {
+				try {
 					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-			}catch(SQLException e) {
-				throw new Exception("DB接続処理に失敗しました。③");
 			}
-			try {
-				if(pstmt!=null) {
+			if(pstmt != null) {
+				try {
 					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
-			}catch(SQLException e) {
-				throw new Exception("DB接続処理に失敗しました。④");
 			}
-     	}
+		}
+
 		closeConnection(con);
-
-
-
 		return customer;
 	}
 }

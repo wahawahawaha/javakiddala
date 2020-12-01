@@ -82,18 +82,17 @@ public class CustomerSearchFrame extends JFrame implements ActionListener {
 		add(lblKanaNotes);
 
 		btnSearch = new JButton("検索");
-		btnSearch.setBounds(20, 110, 120, 55);
-
+		btnSearch.setBounds(20, 120, 90, 30);
 		btnSearch.addActionListener(this);
 		add(btnSearch);
 
 		btnDelete = new JButton("入力消去");
-		btnDelete.setBounds(160, 110, 120, 55);
+		btnDelete.setBounds(120, 120, 90, 30);
 		btnDelete.addActionListener(this);
 		add(btnDelete);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 170, 460, 270);
+		scrollPane.setBounds(20, 160, 460, 270);
 		add(scrollPane);
 
 		String[] columnNames = { "ID", "氏名", "カナ", "住所" };

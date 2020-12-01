@@ -8,18 +8,35 @@
  */
 
 package action;
-
 import java.util.ArrayList;
 
 import dao.ItemMenuDisplayDBAccess;
+import dao.TaxSearchDBAccess;
 import model.Item;
-
+import model.OrderControlUtility2;
+import model.Tax;
 public class ItemMenuDisplayAction {
 
-	public ArrayList<Item> execute()  throws Exception {
-		 ItemMenuDisplayDBAccess  imdb = new  ItemMenuDisplayDBAccess();
+	public String[][] execute() throws Exception {
 
-		 imdb.searchAllItem();
-		return imdb.searchAllItem();
+		ArrayList<Item> list = new ArrayList<>();
+		ItemMenuDisplayDBAccess itMDB = new ItemMenuDisplayDBAccess();
+		list = itMDB.searchAllItem();
+
+		TaxSearchDBAccess tsDB = new TaxSearchDBAccess();
+		Tax tax = tsDB.searchCurrentTax();
+		double rate = tax.getRate();
+
+		 String[][] tableData = null;
+		 tableData = OrderControlUtility2.itemToArray(list);
+
+		for(int i = 0;i<tableData.length;i++){
+
+			int ra = Integer.parseInt(tableData[i][4]);
+			ra = (int)(ra + ra * rate);
+
+			tableData[i][4] = String.valueOf(String.format("%1$,d", ra));
+		}
+		 return tableData;
 	}
 }

@@ -74,7 +74,7 @@ public class OrderDetail implements Serializable {
 	public Tax getTax() {
 		return tax;
 	}
-	public void setStatus(int Status){
+	public void setStatus(int status){
 		this.status = status;
 	}
 	public int getStatus() {
